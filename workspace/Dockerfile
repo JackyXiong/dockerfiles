@@ -15,7 +15,7 @@ RUN apt-get install -y openssh-server && mkdir /var/run/sshd && \
     sed -i 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
 RUN echo "export VISIBLE=now" >> /etc/profile &&\
     chsh -s /bin/zsh && cd ~; mkdir .ssh; echo > .ssh/authorized_keys
-RUN sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+RUN wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O - | zsh || true
     # 安装 k-vim
 RUN git clone https://github.com/wklken/vim-for-server.git && ln -s vim-for-server/vimrc ~/.vimrc
 
